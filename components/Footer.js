@@ -5,9 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 export default function Footer() {
   return (
     <footer className="mt-4 text-center lg:text-left bg-gray-500 text-slate-100">
-        <div className="flex justify-center items-center lg:justify-between p-6 border-b border-gray-300">
+        <div className="flex justify-center items-center p-6 border-b border-gray-300">
             <div className="mr-12 hidden lg:block">
-            <span>Get connected with us:</span>
+                <span>Get connected with us:</span>
             </div>
             <div className="flex justify-center text-xl">
                 <a href="#!" className="mr-6 text-slate-100">
@@ -29,22 +29,23 @@ export default function Footer() {
         </div>
         <div className="mx-6 py-10 text-center md:text-left">
             <div className="grid grid-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="">
-                <h6 className="
-                    uppercase
-                    font-semibold
-                    mb-4
-                    flex
-                    items-center
-                    justify-center
-                    md:justify-start
-                ">
-                Tattva Hathayoga
-                </h6>
-                <p className='italic'>
-                    Learn classical hathayoga in its purest form
-                </p>
-            </div>
+                <div className='hidden lg:block'></div>
+                <div className="">
+                    <h6 className="
+                        uppercase
+                        font-semibold
+                        mb-4
+                        flex
+                        items-center
+                        justify-center
+                        md:justify-start
+                    ">
+                    Tattva Hathayoga
+                    </h6>
+                    <p className='italic'>
+                        Learn classical hathayoga in its purest form
+                    </p>
+                </div>
                 <div>
                     <h6 className="uppercase font-semibold mb-4 flex justify-center md:justify-start">
                     Address
