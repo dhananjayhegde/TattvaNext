@@ -38,7 +38,7 @@ export default function NavBar({}){
                         <Link href='/' >Home</Link>
                     </li>
                     <li className='mx-4 my-2 md:my-0'>
-                        <Link href='/about' >Upcoming Programs</Link>
+                        <Link href='https://www.instamojo.com/pay_tattvahy/?ref=profile_bar'>Upcoming Programs</Link>
                     </li>
                     {/* <li className='mx-4 my-2 md:my-0'>
                         <Link href='/projects' >Hatha Yoga</Link>
@@ -69,7 +69,7 @@ export default function NavBar({}){
                         <Link href='/' >Home</Link>
                     </li>
                     <li className='mx-4 my-2 md:my-0'>
-                        <Link href='/about' >Upcoming Programs</Link>
+                        <Link href='https://www.instamojo.com/pay_tattvahy/?ref=profile_bar' >Upcoming Programs</Link>
                     </li>
                     {/* <li className='mx-4 my-2 md:my-0'>
                         <Link href='/projects' >Hatha Yoga</Link>

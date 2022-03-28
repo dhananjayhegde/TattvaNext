@@ -20,52 +20,52 @@ export default function Home() {
           <p className='text-gray-600'>
             We conduct both week-long workshops and weekend practice sessions.  Choose what suits your need best.
           </p>
-          <LinkButton btnClass='my-8 btn btn-primary hidden md:block' href="/projects" text="Class Schedule"/>             
+          <LinkButton btnClass='my-8 btn btn-primary hidden md:block' href="https://www.instamojo.com/pay_tattvahy/?ref=profile_bar" text="Class Schedule"/>             
         </div>
         <img src="/images/ramya__1.png" alt="Logo" className="object-contain md:w-1/3 md:h-auto md:basis-1/2"/>
-        <LinkButton btnClass='my-8 btn btn-primary md:hidden' href="/projects" text="Class Schedule"/>
+        <LinkButton btnClass='my-8 btn btn-primary md:hidden' href="https://www.instamojo.com/pay_tattvahy/?ref=profile_bar" text="Class Schedule"/>
       </section>
       
       {/* Upcoming Programs section */}
-      <section className='flex flex-col md:flex-row md:flex-wrap md:gap-4 justify-start md:justify-center mt-10 mx-8 md:mx-32 min-h-min'>
+      <section className='flex flex-col md:flex-row md:flex-wrap md:gap-4 justify-start md:justify-center mt-10 mx-8 md:mx-32 min-h-min'>        
         <div className='card-1 flex min-h-24 md:w-80 border-2 border-gray-200/0.5 rounded-lg my-4 py-2 shadow-lg shadow-slate-100/0.7'>
           <div className='flex flex-col justify-center items-center basis-1/4 mx-1 p-2 border-r-2 border-gray-100/0.2'>
             <p className='text-lg font-bold text-gray-400 uppercase'>Apr</p>
             <h3 className='text-4xl font-bold text-gray-600'>10</h3>
           </div>
-          <div className='flex flex-col justify-center basis-3/4 mx-1 p-2'>
-            <h2 className='text-2xl font-bold text-gray-600'>Surya Kriya</h2>
-            <p className='text-sm text-gray-500 mt-2'>Apr 10 - 14 (Mon-Fri)</p>
-            <p className='text-sm text-gray-500'>6:30am - 8:30am</p>
-            <p className='text-xs text-gray-500 mt-2'>Shira Asthi, Doddakalsandra</p>
+          <div className='flex flex-col justify-start basis-3/4 mx-1 p-2'>
+            <h2 className='text-2xl font-bold text-gray-600'>Arogyam (Online)</h2>
+            <p className='text-sm text-gray-500 mt-2'>Apr 10 - 23 (14 days)</p>
+            <p className='text-sm text-gray-500'>4:30pm - 6:00pm</p>
+            <p className='text-xs text-gray-500 mt-2'>Online Program</p>
           </div>
         </div>
         <div className='card-1 flex min-h-24 md:w-80 border-2 border-gray-200/0.5 rounded-lg my-4 py-2 shadow-lg shadow-slate-100/0.7'>
           <div className='flex flex-col justify-center items-center basis-1/4 mx-1 p-2 border-r-2 border-gray-100/0.2'>
             <p className='text-lg font-bold text-gray-400 uppercase'>Apr</p>
-            <h3 className='text-4xl font-bold text-gray-600'>16</h3>
+            <h3 className='text-4xl font-bold text-gray-600'>18</h3>
           </div>
-          <div className='flex flex-col justify-center basis-3/4 mx-1 p-2'>
-            <h2 className='text-2xl font-bold text-gray-600'>Angamardana</h2>
-            <p className='text-sm text-gray-500 mt-2'>Apr 16 - 20 (Mon-Fri)</p>
-            <p className='text-sm text-gray-500'>6:30am - 8:30am</p>
-            <p className='text-xs text-gray-500 mt-2'>Shira Asthi, Doddakalsandra</p>
-          </div>
-        </div>
-        <div className='card-1 flex min-h-24 md:w-80 border-2 border-gray-200/0.5 rounded-lg my-4 py-2 shadow-lg shadow-slate-100/0.7'>
-          <div className='flex flex-col justify-center items-center basis-1/4 mx-1 p-2 border-r-2 border-gray-100/0.2'>
-            <p className='text-lg font-bold text-gray-400 uppercase'>Apr</p>
-            <h3 className='text-4xl font-bold text-gray-600'>22</h3>
-          </div>
-          <div className='flex flex-col justify-center basis-3/4 mx-1 p-2'>
+          <div className='flex flex-col justify-start basis-3/4 mx-1 p-2'>
             <h2 className='text-2xl font-bold text-gray-600'>Yogasanas</h2>
-            <p className='text-sm text-gray-500 mt-2'>Apr 22 - 26 (Mon-Fri)</p>
+            <p className='text-sm text-gray-500 mt-2'>Apr 18 - 22 (Mon-Fri)</p>
+            <p className='text-sm text-gray-500'>6:30am - 8:30am</p>
+            <p className='text-xs text-gray-500 mt-2'>Shira Asthi, Doddakalsandra</p>
+          </div>
+        </div>
+        <div className='card-1 flex min-h-24 md:w-80 border-2 border-gray-200/0.5 rounded-lg my-4 py-2 shadow-lg shadow-slate-100/0.7'>
+          <div className='flex flex-col justify-center items-center basis-1/4 mx-1 p-2 border-r-2 border-gray-100/0.2'>
+            <p className='text-lg font-bold text-gray-400 uppercase'>Apr</p>
+            <h3 className='text-4xl font-bold text-gray-600'>25</h3>
+          </div>
+          <div className='flex flex-col justify-start basis-3/4 mx-1 p-2'>
+            <h2 className='text-2xl font-bold text-gray-600'>Angamardana & Pranayama</h2>
+            <p className='text-sm text-gray-500 mt-2'>Apr 25 - 29 (Mon-Fri)</p>
             <p className='text-sm text-gray-500'>6:30am - 8:30am</p>
             <p className='text-xs text-gray-500 mt-2'>Shira Asthi, Doddakalsandra</p>
           </div>
         </div>
         <div className='hidden md:block break-row'></div>
-        <LinkButton btnClass='my-8 btn btn-primary' href="/projects" text="Register"/>                    
+        <LinkButton btnClass='my-8 btn btn-primary' href="https://www.instamojo.com/pay_tattvahy/?ref=profile_bar" text="Register"/>                    
       </section>
       
       
@@ -126,6 +126,13 @@ export default function Home() {
               </ul>
             </div>
           </div>
+
+          <LinkButton 
+            btnClass='my-8 btn btn-primary' 
+            href="https://wa.me/918099664362?text=Namaskaram%21%0A%0AI%20want%20to%20start%20practicing%20Hathayoga.%20Please%20guide%20me.%0A%0AThank%20you%2C%0A" 
+            text="Request Class"
+            icon="fa-brands fa-whatsapp"
+          />        
         </div>
       </section>
       

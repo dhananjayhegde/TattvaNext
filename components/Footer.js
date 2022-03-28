@@ -10,20 +10,26 @@ export default function Footer() {
                 <span>Get connected with us:</span>
             </div>
             <div className="flex justify-center text-xl">
-                <a href="#!" className="mr-6 text-slate-100">
+                <a href="https://wa.me/918099664362" className="mr-6 text-slate-100">
+                    <FontAwesomeIcon icon="fa-brands fa-whatsapp" />
+                </a>
+                <a href="https://www.facebook.com/ramya.ks.54" className="mr-6 text-slate-100">
                     <FontAwesomeIcon icon="fa-brands fa-facebook"/>
                 </a>            
-                <a href="#!" className="mr-6 text-slate-100">
+                <a href="https://twitter.com/ramyakovanur" className="mr-6 text-slate-100">
                     <FontAwesomeIcon icon="fa-brands fa-twitter"/>
                 </a>
-                <a href="#!" className="mr-6 text-slate-100">
-                    <FontAwesomeIcon icon="fa-brands fa-google"/>
-                </a>
-                <a href="#!" className="mr-6 text-slate-100">
+                <a href="https://www.instagram.com/ramyakovanur/?hl=en" className="mr-6 text-slate-100">
                     <FontAwesomeIcon icon="fa-brands fa-instagram"/>
                 </a>
-                <a href="#!" className="mr-6 text-slate-100">
+                <a href="https://in.linkedin.com/in/ramya-sridharan-4a1bb914" className="mr-6 text-slate-100">
                     <FontAwesomeIcon icon="fa-brands fa-linkedin"/>
+                </a>
+                <a href="mailto:tattvahathayoga@gmail.com" className="mr-6 text-slate-100">
+                    <FontAwesomeIcon icon="fa-solid fa-envelope" />
+                </a>
+                <a href="tel:+918099664362" className="mr-6 text-slate-100">
+                    <FontAwesomeIcon icon="fa-solid fa-phone" />
                 </a>
             </div>
         </div>
