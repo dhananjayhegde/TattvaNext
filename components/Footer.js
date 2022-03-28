@@ -57,7 +57,7 @@ export default function Footer() {
                     Address
                     </h6>
                     <p className="flex items-center justify-center md:justify-start mb-4">
-                        <a href="https://goo.gl/maps/LqLtZM9pnhWUG9A58" target="_blank">#793, Sthira Aasthi, Narayana Nagar, Doddakalsandra Stage 1, Bengaluru</a>
+                        <a href="https://goo.gl/maps/LqLtZM9pnhWUG9A58" target="_blank" rel="noreferrer">#793, Sthira Aasthi, Narayana Nagar, Doddakalsandra Stage 1, Bengaluru</a>
                     </p>
                     <p className="flex items-center justify-center md:justify-start mb-4">
                         <FontAwesomeIcon icon="fa-solid fa-envelope" className='mr-2'/>
