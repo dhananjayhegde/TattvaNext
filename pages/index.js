@@ -27,8 +27,8 @@ export default function Home() {
       </section>
       
       {/* Upcoming Programs section */}
-      <section className='flex flex-col md:flex-row justify-start mt-10 mx-8 min-h-min'>
-        <div className='card-1 flex min-h-24 border-2 border-gray-200/0.5 rounded-lg my-4 py-2 shadow-lg shadow-slate-100/0.7'>
+      <section className='flex flex-col md:flex-row md:flex-wrap md:gap-4 justify-start md:justify-center mt-10 mx-8 md:mx-32 min-h-min'>
+        <div className='card-1 flex min-h-24 md:w-80 border-2 border-gray-200/0.5 rounded-lg my-4 py-2 shadow-lg shadow-slate-100/0.7'>
           <div className='flex flex-col justify-center items-center basis-1/4 mx-1 p-2 border-r-2 border-gray-100/0.2'>
             <p className='text-lg font-bold text-gray-400 uppercase'>Apr</p>
             <h3 className='text-4xl font-bold text-gray-600'>10</h3>
@@ -40,7 +40,7 @@ export default function Home() {
             <p className='text-xs text-gray-500 mt-2'>Shira Asthi, Doddakalsandra</p>
           </div>
         </div>
-        <div className='card-1 flex min-h-24 border-2 border-gray-200/0.5 rounded-lg my-4 py-2 shadow-lg shadow-slate-100/0.7'>
+        <div className='card-1 flex min-h-24 md:w-80 border-2 border-gray-200/0.5 rounded-lg my-4 py-2 shadow-lg shadow-slate-100/0.7'>
           <div className='flex flex-col justify-center items-center basis-1/4 mx-1 p-2 border-r-2 border-gray-100/0.2'>
             <p className='text-lg font-bold text-gray-400 uppercase'>Apr</p>
             <h3 className='text-4xl font-bold text-gray-600'>16</h3>
@@ -52,7 +52,7 @@ export default function Home() {
             <p className='text-xs text-gray-500 mt-2'>Shira Asthi, Doddakalsandra</p>
           </div>
         </div>
-        <div className='card-1 flex min-h-24 border-2 border-gray-200/0.5 rounded-lg my-4 py-2 shadow-lg shadow-slate-100/0.7'>
+        <div className='card-1 flex min-h-24 md:w-80 border-2 border-gray-200/0.5 rounded-lg my-4 py-2 shadow-lg shadow-slate-100/0.7'>
           <div className='flex flex-col justify-center items-center basis-1/4 mx-1 p-2 border-r-2 border-gray-100/0.2'>
             <p className='text-lg font-bold text-gray-400 uppercase'>Apr</p>
             <h3 className='text-4xl font-bold text-gray-600'>22</h3>
@@ -64,6 +64,7 @@ export default function Home() {
             <p className='text-xs text-gray-500 mt-2'>Shira Asthi, Doddakalsandra</p>
           </div>
         </div>
+        <div className='hidden md:block break-row'></div>
         <LinkButton btnClass='my-8 btn btn-primary' href="/projects" text="Register"/>                    
       </section>
       
