@@ -40,7 +40,7 @@ export default function NavBar({}){
                     <li className='mx-4 my-2 md:my-0'>
                         <Link href='/about' >Upcoming Programs</Link>
                     </li>
-                    <li className='mx-4 my-2 md:my-0'>
+                    {/* <li className='mx-4 my-2 md:my-0'>
                         <Link href='/projects' >Hatha Yoga</Link>
                     </li>
                     <li className='mx-4 my-2 md:my-0'>
@@ -48,7 +48,7 @@ export default function NavBar({}){
                     </li>
                     <li className='mx-4 my-2 md:my-0'>
                         <Link href='/projects' >Contac Us</Link>
-                    </li>
+                    </li> */}
                 </ul>                
             </nav>
             {/* 
@@ -71,7 +71,7 @@ export default function NavBar({}){
                     <li className='mx-4 my-2 md:my-0'>
                         <Link href='/about' >Upcoming Programs</Link>
                     </li>
-                    <li className='mx-4 my-2 md:my-0'>
+                    {/* <li className='mx-4 my-2 md:my-0'>
                         <Link href='/projects' >Hatha Yoga</Link>
                     </li>
                     <li className='mx-4 my-2 md:my-0'>
@@ -79,7 +79,7 @@ export default function NavBar({}){
                     </li>
                     <li className='mx-4 my-2 md:my-0'>
                         <Link href='/projects' >Contac Us</Link>
-                    </li>
+                    </li> */}
                 </ul>
             </div>
         </>
