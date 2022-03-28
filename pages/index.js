@@ -7,8 +7,10 @@ import LinkButton from '../components/LinkButton'
 export default function Home() {
   return (
     <div className='flex flex-col min-h-screen'>
-      <section className='flex flex-col md:flex-row justify-start mt-24 mx-8'>
-        <div className='flex flex-col justify-end content mb-4'>
+      
+      {/* Hero section */}      
+      <section className='flex flex-col md:flex-row md:flex-wrap justify-start md:items-center mt-24 mx-8 md:mx-64'>
+        <div className='flex flex-col justify-end content mb-4 md:basis-1/2'>
           <p className='text-gray-500 font-semibold text-lg md:text-4xl'>
             Yoga is not what you do
           </p>
@@ -17,10 +19,11 @@ export default function Home() {
           </h2>
           <p className='text-gray-600'>
             We conduct both week-long workshops and weekend practice sessions.  Choose what suits your need best.
-          </p>              
+          </p>
+          <LinkButton btnClass='my-8 btn btn-primary hidden md:block' href="/projects" text="Class Schedule"/>             
         </div>
-        <img src="/images/ramya__1.png" alt="Logo" className="object-contain drop-shadow-2"/>
-        <LinkButton btnClass='my-8 btn btn-primary' href="/projects" text="Class Schedule"/>
+        <img src="/images/ramya__1.png" alt="Logo" className="object-contain md:w-1/3 md:h-auto md:basis-1/2"/>
+        <LinkButton btnClass='my-8 btn btn-primary md:hidden' href="/projects" text="Class Schedule"/>
       </section>
       
       {/* Upcoming Programs section */}
