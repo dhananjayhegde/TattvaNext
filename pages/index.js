@@ -27,19 +27,7 @@ export default function Home() {
       </section>
       
       {/* Upcoming Programs section */}
-      <section className='flex flex-col md:flex-row md:flex-wrap md:gap-4 justify-start md:justify-center mt-10 mx-8 md:mx-32 min-h-min'>        
-        <div className='card-1 flex min-h-24 md:w-80 border-2 border-gray-200/0.5 rounded-lg my-4 py-2 shadow-lg shadow-slate-100/0.7'>
-          <div className='flex flex-col justify-center items-center basis-1/4 mx-1 p-2 border-r-2 border-gray-100/0.2'>
-            <p className='text-lg font-bold text-gray-400 uppercase'>Apr</p>
-            <h3 className='text-4xl font-bold text-gray-600'>10</h3>
-          </div>
-          <div className='flex flex-col justify-start basis-3/4 mx-1 p-2'>
-            <h2 className='text-2xl font-bold text-gray-600'>Arogyam (Online)</h2>
-            <p className='text-sm text-gray-500 mt-2'>Apr 10 - 23 (14 days)</p>
-            <p className='text-sm text-gray-500'>4:30pm - 6:00pm</p>
-            <p className='text-xs text-gray-500 mt-2'>Online Program</p>
-          </div>
-        </div>
+      <section className='flex flex-col md:flex-row md:flex-wrap md:gap-4 justify-start md:justify-center mt-10 mx-8 md:mx-32 min-h-min'>
         <div className='card-1 flex min-h-24 md:w-80 border-2 border-gray-200/0.5 rounded-lg my-4 py-2 shadow-lg shadow-slate-100/0.7'>
           <div className='flex flex-col justify-center items-center basis-1/4 mx-1 p-2 border-r-2 border-gray-100/0.2'>
             <p className='text-lg font-bold text-gray-400 uppercase'>Apr</p>
@@ -49,7 +37,7 @@ export default function Home() {
             <h2 className='text-2xl font-bold text-gray-600'>Yogasanas</h2>
             <p className='text-sm text-gray-500 mt-2'>Apr 18 - 22 (Mon-Fri)</p>
             <p className='text-sm text-gray-500'>6:30am - 8:30am</p>
-            <p className='text-xs text-gray-500 mt-2'>Shira Asthi, Doddakalsandra</p>
+            <p className='text-xs text-gray-500 mt-2'>Sthira Asthi, Doddakalsandra</p>
           </div>
         </div>
         <div className='card-1 flex min-h-24 md:w-80 border-2 border-gray-200/0.5 rounded-lg my-4 py-2 shadow-lg shadow-slate-100/0.7'>
@@ -61,7 +49,19 @@ export default function Home() {
             <h2 className='text-2xl font-bold text-gray-600'>Angamardana & Pranayama</h2>
             <p className='text-sm text-gray-500 mt-2'>Apr 25 - 29 (Mon-Fri)</p>
             <p className='text-sm text-gray-500'>6:30am - 8:30am</p>
-            <p className='text-xs text-gray-500 mt-2'>Shira Asthi, Doddakalsandra</p>
+            <p className='text-xs text-gray-500 mt-2'>Sthira Asthi, Doddakalsandra</p>
+          </div>
+        </div>
+        <div className='card-1 flex min-h-24 md:w-80 border-2 border-gray-200/0.5 rounded-lg my-4 py-2 shadow-lg shadow-slate-100/0.7'>
+          <div className='flex flex-col justify-center items-center basis-1/4 mx-1 p-2 border-r-2 border-gray-100/0.2'>
+            <p className='text-lg font-bold text-gray-400 uppercase'>Apr</p>
+            <h3 className='text-4xl font-bold text-gray-600'>23</h3>
+          </div>
+          <div className='flex flex-col justify-start basis-3/4 mx-1 p-2'>
+            <h2 className='text-2xl font-bold text-gray-600'>Bhutashuddhi</h2>
+            <p className='text-sm text-gray-500 mt-2'>Apr 23</p>
+            <p className='text-sm text-gray-500'>6:30am - 8:00am</p>
+            <p className='text-xs text-gray-500 mt-2'>Sthira Asthi, Doddakalsandra</p>
           </div>
         </div>
         <div className='hidden md:block break-row'></div>
