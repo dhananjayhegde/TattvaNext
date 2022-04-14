@@ -3,8 +3,60 @@ import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import LinkButton from '../components/LinkButton'
+import EventCard from '../components/EventCard'
 
-export default function Home() {
+import { google } from 'googleapis'
+
+export async function getServerSideProps() {
+  const auth = await google.auth.getClient({ scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'] });
+  const sheets = google.sheets({ version: 'v4', auth });
+
+  const range = `UpcomingPrograms!C2:G10`;
+
+  const response = await sheets.spreadsheets.values.get({
+    spreadsheetId: process.env.SHEET_ID,
+    range,
+  });
+
+  return {
+    props: {
+      events: response.data.values.map((event) => {
+        return {
+          fromDateTime: event[0],
+          toDateTime: event[1],
+          title: event[2],
+          category: event[3],
+          location: event[4]
+        }
+      })
+    }
+  }
+}
+
+export default function Home({events}) {
+
+  const eventCards = events.map((event) => {
+    return {
+      fromDateTime: new Date(event.fromDateTime),
+      toDateTime: new Date(event.toDateTime),
+      title: event.title,
+      category: event.category,
+      location: event.location
+    }
+  }).filter(event => event.fromDateTime > new Date())
+    .sort((event1, event2) => event1.fromDateTime - event2.fromDateTime)
+    .map((fe, index) => {
+      return (
+        <EventCard 
+            key={index}
+            fromDateTime={fe.fromDateTime}
+            toDateTime={fe.toDateTime}
+            title={fe.title}
+            location={fe.location}
+            category={fe.category} />
+      );
+    });  
+  
   return (
     <div className='flex flex-col min-h-screen'>
       
@@ -28,42 +80,9 @@ export default function Home() {
       
       {/* Upcoming Programs section */}
       <section className='flex flex-col md:flex-row md:flex-wrap md:gap-4 justify-start md:justify-center mt-10 mx-8 md:mx-32 min-h-min'>
-        <div className='card-1 flex min-h-24 md:w-80 border-2 border-gray-200/0.5 rounded-lg my-4 py-2 shadow-lg shadow-slate-100/0.7'>
-          <div className='flex flex-col justify-center items-center basis-1/4 mx-1 p-2 border-r-2 border-gray-100/0.2'>
-            <p className='text-lg font-bold text-gray-400 uppercase'>Apr</p>
-            <h3 className='text-4xl font-bold text-gray-600'>18</h3>
-          </div>
-          <div className='flex flex-col justify-start basis-3/4 mx-1 p-2'>
-            <h2 className='text-2xl font-bold text-gray-600'>Yogasanas</h2>
-            <p className='text-sm text-gray-500 mt-2'>Apr 18 - 22 (Mon-Fri)</p>
-            <p className='text-sm text-gray-500'>6:30am - 8:30am</p>
-            <p className='text-xs text-gray-500 mt-2'>Sthira Asthi, Doddakalsandra</p>
-          </div>
-        </div>
-        <div className='card-1 flex min-h-24 md:w-80 border-2 border-gray-200/0.5 rounded-lg my-4 py-2 shadow-lg shadow-slate-100/0.7'>
-          <div className='flex flex-col justify-center items-center basis-1/4 mx-1 p-2 border-r-2 border-gray-100/0.2'>
-            <p className='text-lg font-bold text-gray-400 uppercase'>Apr</p>
-            <h3 className='text-4xl font-bold text-gray-600'>25</h3>
-          </div>
-          <div className='flex flex-col justify-start basis-3/4 mx-1 p-2'>
-            <h2 className='text-2xl font-bold text-gray-600'>Angamardana & Pranayama</h2>
-            <p className='text-sm text-gray-500 mt-2'>Apr 25 - 29 (Mon-Fri)</p>
-            <p className='text-sm text-gray-500'>6:30am - 8:30am</p>
-            <p className='text-xs text-gray-500 mt-2'>Sthira Asthi, Doddakalsandra</p>
-          </div>
-        </div>
-        <div className='card-1 flex min-h-24 md:w-80 border-2 border-gray-200/0.5 rounded-lg my-4 py-2 shadow-lg shadow-slate-100/0.7'>
-          <div className='flex flex-col justify-center items-center basis-1/4 mx-1 p-2 border-r-2 border-gray-100/0.2'>
-            <p className='text-lg font-bold text-gray-400 uppercase'>Apr</p>
-            <h3 className='text-4xl font-bold text-gray-600'>23</h3>
-          </div>
-          <div className='flex flex-col justify-start basis-3/4 mx-1 p-2'>
-            <h2 className='text-2xl font-bold text-gray-600'>Bhutashuddhi</h2>
-            <p className='text-sm text-gray-500 mt-2'>Apr 23</p>
-            <p className='text-sm text-gray-500'>6:30am - 8:00am</p>
-            <p className='text-xs text-gray-500 mt-2'>Sthira Asthi, Doddakalsandra</p>
-          </div>
-        </div>
+        
+        { /* Event cards */ }
+        { eventCards }        
         <div className='hidden md:block break-row'></div>
         <LinkButton btnClass='my-8 btn btn-primary' href="https://www.instamojo.com/pay_tattvahy/?ref=profile_bar" text="Register"/>                    
       </section>
