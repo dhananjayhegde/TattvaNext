@@ -11,17 +11,17 @@ import { google } from 'googleapis'
 export async function getServerSideProps() {
   let sheets = {};
   
-  if(process.env.NETLIFY) {
-    sheets = google.sheets({ version: 'v4', auth: process.env.GOOGLE_SHEETS_API_KEY });
-  } else {
-    const auth = await google.auth.getClient({ scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'] });
-    sheets = google.sheets({ version: 'v4', auth });
-    console.log("Key File")
-  }
+  try{
+    
+    if(process.env.NETLIFY) {
+      sheets = google.sheets({ version: 'v4', auth: process.env.GOOGLE_SHEETS_API_KEY });
+    } else {
+      const auth = await google.auth.getClient({ scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'] });
+      sheets = google.sheets({ version: 'v4', auth });
+      console.log("Key File")
+    }
 
-  const range = `UpcomingPrograms!C2:G10`;
-
-  try {
+    const range = `UpcomingPrograms!C2:G10`;
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.SHEET_ID,
       range,
