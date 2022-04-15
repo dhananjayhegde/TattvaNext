@@ -10,16 +10,18 @@ import { google } from 'googleapis'
 
 export async function getServerSideProps() {
   let sheets = {};
+  let auth = {};
   
-  try{
-    
-    if(process.env.NETLIFY) {
-      sheets = google.sheets({ version: 'v4', auth: process.env.GOOGLE_SHEETS_API_KEY });
-    } else {
-      const auth = await google.auth.getClient({ scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'] });
-      sheets = google.sheets({ version: 'v4', auth });
-      console.log("Key File")
-    }
+  try{    
+    auth = new google.auth.GoogleAuth({
+      credentials: {
+        client_email: process.env.GOOGLE_CLIENT_EMAIL,
+        private_key: process.env.GOOGLE_PRIVATE_KEY
+      },
+      projectId: process.env.GOOGLE_PROJECT_ID,
+      scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly']
+    });
+    sheets = google.sheets({ version: 'v4', auth });    
 
     const range = `UpcomingPrograms!C2:G10`;
     const response = await sheets.spreadsheets.values.get({
@@ -41,6 +43,7 @@ export async function getServerSideProps() {
       }
     }
   } catch (error) {
+      console.log(error);
       return {
         props: {
           events: [
