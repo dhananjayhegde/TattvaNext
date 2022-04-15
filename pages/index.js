@@ -11,7 +11,7 @@ import { google } from 'googleapis'
 export async function getServerSideProps() {
   let sheets = {};
   
-  if(!process.env.DEV_ENV) {
+  if(process.env.NETLIFY) {
     sheets = google.sheets({ version: 'v4', auth: process.env.GOOGLE_SHEETS_API_KEY });
   } else {
     const auth = await google.auth.getClient({ scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'] });
@@ -21,23 +21,39 @@ export async function getServerSideProps() {
 
   const range = `UpcomingPrograms!C2:G10`;
 
-  const response = await sheets.spreadsheets.values.get({
-    spreadsheetId: process.env.SHEET_ID,
-    range,
-  });
-
-  return {
-    props: {
-      events: response.data.values.map((event) => {
-        return {
-          fromDateTime: event[0],
-          toDateTime: event[1],
-          title: event[2],
-          category: event[3],
-          location: event[4]
-        }
-      })
+  try {
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: process.env.SHEET_ID,
+      range,
+    });
+    
+    return {
+      props: {
+        events: response.data.values.map((event) => {
+          return {
+            fromDateTime: event[0],
+            toDateTime: event[1],
+            title: event[2],
+            category: event[3],
+            location: event[4]
+          }
+        })
+      }
     }
+  } catch (error) {
+      return {
+        props: {
+          events: [
+            {
+              fromDateTime: '4/25/2025 10:00:00',
+              toDateTime: '5/6/2025 11:00:00',
+              title: 'Far in future',
+              category: 'Undefined',
+              location: 'Unindetified Location'
+            }
+          ]
+        }
+      }
   }
 }
 
