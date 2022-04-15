@@ -6,46 +6,18 @@ import LinkButton from '../components/LinkButton'
 import EventCard from '../components/EventCard'
 
 import { google } from 'googleapis'
-import { create } from 'domain'
 
-let fs = require("fs");
-
-function readFile(){
-  return new Promise((resolve, reject) => {
-    fs.readFile('secrets.json', (error, data) => {
-      if(data){        
-        console.log("secrets.json file exists");
-        resolve();
-      } else {
-        reject();
-      }
-    });
-  });
-}
-
-function createFile(){
-  return new Promise((resolve, reject) => {
-    fs.writeFile("secrets.json", process.env.GOOGLE_CREDS, (error) => {
-      if(error){
-        reject();
-      } else {
-        console.log("secrets.json file created");
-        resolve();
-      }
-    });
-  });
-}
 
 export async function getServerSideProps() {
+  let sheets = {};
   
-  try {
-    await readFile();
-  } catch (error) {
-    await createFile();
+  if(!process.env.DEV_ENV) {
+    sheets = google.sheets({ version: 'v4', auth: process.env.GOOGLE_SHEETS_API_KEY });
+  } else {
+    const auth = await google.auth.getClient({ scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'] });
+    sheets = google.sheets({ version: 'v4', auth });
+    console.log("Key File")
   }
-  
-  const auth = await google.auth.getClient({ scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'] });
-  const sheets = google.sheets({ version: 'v4', auth });
 
   const range = `UpcomingPrograms!C2:G10`;
 
