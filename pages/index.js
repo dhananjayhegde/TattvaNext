@@ -50,7 +50,7 @@ export async function getServerSideProps() {
             {
               fromDateTime: '4/25/2025 10:00:00',
               toDateTime: '5/6/2025 11:00:00',
-              title: 'Far in future',
+              title: 'Undefined Event!',
               category: 'Undefined',
               location: 'Unindetified Location'
             }
@@ -163,12 +163,12 @@ export default function Home({events}) {
             <div className='flex flex-col justify-start basis-3/4 mx-1 p-2'>
               <h2 className='text-3xl md:text-4xl font-bold text-gray-700'>Yogasanas</h2>
               <p className='text-sm md:text-base italic text-gray-500 my-2'>
-                Surya Kriya is a potent 21-step yogic practice of tremendous antiquity, designed as a holistic process for health and inner wellbeing.
+              Learn a set of 21 powerful postures to enable the system to sustain higher dimensions of energy.
               </p>
               <ul className='text-sm md:text-base text-gray-600 mt-2 list-disc list-inside'>
                 <li>Relieves from chronic health issues</li>
                 <li>Stabilizes body & mind</li>
-                <li>Deceleratin of aging process</li>
+                <li>Decelerates of aging process</li>
               </ul>
             </div>
           </div>
