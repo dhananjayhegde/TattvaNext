@@ -9,28 +9,25 @@ import { google } from 'googleapis'
 
 
 export async function getServerSideProps() {
-  let sheets = {};
-  let auth = {};
-  let data = {};
   
-  try{    
-    auth = new google.auth.GoogleAuth({
-      credentials: {
-        client_email: process.env.GOOGLE_CLIENT_EMAIL,
-        private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n")
-      },
-      projectId: process.env.GOOGLE_PROJECT_ID,
-      scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly']
-    });
-    sheets = google.sheets({ version: 'v4', auth });    
+  let auth = new google.auth.GoogleAuth({
+    credentials: {
+      client_email: process.env.GOOGLE_CLIENT_EMAIL,
+      private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n")
+    },
+    projectId: process.env.GOOGLE_PROJECT_ID,
+    scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly']
+  });
+  let sheets = google.sheets({ version: 'v4', auth });    
 
-    const range = `UpcomingPrograms!C2:G10`;
-    const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: process.env.SHEET_ID,
-      range,
-    });
-
-    data = {
+  const range = `UpcomingPrograms!C2:G10`;
+  const response = await sheets.spreadsheets.values.get({
+    spreadsheetId: process.env.SHEET_ID,
+    range,
+  });
+  
+  return {
+    props: {
       events: response.data.values.map((event) => {
         return {
           fromDateTime: event[0],
@@ -41,41 +38,11 @@ export async function getServerSideProps() {
         }
       })
     }
-    
-    return {
-      props: { data }
-    }
-  } catch (error) {
-      console.log(error);
-      let { message, description, lineNumber, fileName } = error;
-      
-      data = {
-        events: [
-          {
-            fromDateTime: '4/25/2025 10:00:00',
-            toDateTime: '5/6/2025 11:00:00',
-            title: 'Undefined Event!',
-            category: 'Undefined',
-            location: 'Unindetified Location'
-          }
-        ],
-        error: {
-          message: message,
-          description: description,
-          lineNumber: lineNumber,
-          fileName: fileName
-        }
-      }
-      
-      return {
-        props: { data }
-      }
   }
 }
 
-export default function Home({ data }) {
+export default function Home({ events }) {
 
-  let { events, error } = data;
   const eventCards = events.map((event) => {
     return {
       fromDateTime: new Date(event.fromDateTime),
@@ -97,12 +64,6 @@ export default function Home({ data }) {
             category={fe.category} />
       );
     });
-
-  const errorSection = error? (<section>
-      <h2>{error.message}</h2>
-      <p>{error.description}</p>
-      <p>{error.fileName} / {error.lineNumber}</p>
-    </section>): "";
   
   return (
     <div className='flex flex-col min-h-screen'>
@@ -134,8 +95,6 @@ export default function Home({ data }) {
         <div className='hidden md:block break-row'></div>
         <LinkButton btnClass='my-8 btn btn-primary' href="https://www.instamojo.com/pay_tattvahy/?ref=profile_bar" text="Register"/>                    
       </section>
-      
-      {errorSection}
       
       <section className='flex flex-col md:flex-row justify-start mt-10 md:px-32 pb-8 min-h-min bg-slate-100'>
         <div className='flex flex-col items-center mx-8 md:mx-32'>
