@@ -11,6 +11,7 @@ import { google } from 'googleapis'
 export async function getServerSideProps() {
   let sheets = {};
   let auth = {};
+  let data = {};
   
   try{    
     auth = new google.auth.GoogleAuth({
@@ -28,40 +29,53 @@ export async function getServerSideProps() {
       spreadsheetId: process.env.SHEET_ID,
       range,
     });
+
+    data = {
+      events: response.data.values.map((event) => {
+        return {
+          fromDateTime: event[0],
+          toDateTime: event[1],
+          title: event[2],
+          category: event[3],
+          location: event[4]
+        }
+      })
+    }
     
     return {
-      props: {
-        events: response.data.values.map((event) => {
-          return {
-            fromDateTime: event[0],
-            toDateTime: event[1],
-            title: event[2],
-            category: event[3],
-            location: event[4]
-          }
-        })
-      }
+      props: { data }
     }
   } catch (error) {
       console.log(error);
-      return {
-        props: {
-          events: [
-            {
-              fromDateTime: '4/25/2025 10:00:00',
-              toDateTime: '5/6/2025 11:00:00',
-              title: 'Undefined Event!',
-              category: 'Undefined',
-              location: 'Unindetified Location'
-            }
-          ]
+      let { message, description, lineNumber, fileName } = error;
+      
+      data = {
+        events: [
+          {
+            fromDateTime: '4/25/2025 10:00:00',
+            toDateTime: '5/6/2025 11:00:00',
+            title: 'Undefined Event!',
+            category: 'Undefined',
+            location: 'Unindetified Location'
+          }
+        ],
+        error: {
+          message: message,
+          description: description,
+          lineNumber: lineNumber,
+          fileName: fileName
         }
+      }
+      
+      return {
+        props: { data }
       }
   }
 }
 
-export default function Home({events}) {
+export default function Home({ data }) {
 
+  let { events, error } = data;
   const eventCards = events.map((event) => {
     return {
       fromDateTime: new Date(event.fromDateTime),
@@ -82,7 +96,13 @@ export default function Home({events}) {
             location={fe.location}
             category={fe.category} />
       );
-    });  
+    });
+
+  const errorSection = error? (<section>
+      <h2>{error.message}</h2>
+      <p>{error.description}</p>
+      <p>{error.fileName} / {error.lineNumber}</p>
+    </section>): "";
   
   return (
     <div className='flex flex-col min-h-screen'>
@@ -109,11 +129,13 @@ export default function Home({events}) {
       <section className='flex flex-col md:flex-row md:flex-wrap md:gap-4 justify-start md:justify-center mt-10 mx-8 md:mx-32 min-h-min'>
         
         { /* Event cards */ }
-        { eventCards }        
+        { eventCards }
+        
         <div className='hidden md:block break-row'></div>
         <LinkButton btnClass='my-8 btn btn-primary' href="https://www.instamojo.com/pay_tattvahy/?ref=profile_bar" text="Register"/>                    
       </section>
       
+      {errorSection}
       
       <section className='flex flex-col md:flex-row justify-start mt-10 md:px-32 pb-8 min-h-min bg-slate-100'>
         <div className='flex flex-col items-center mx-8 md:mx-32'>
