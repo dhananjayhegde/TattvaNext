@@ -4,45 +4,14 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import LinkButton from '../components/LinkButton'
 import EventCard from '../components/EventCard'
-
-import { google } from 'googleapis'
-
+import getUpcomingSessions from '../utils/HathaSessionUtil'
 
 export async function getServerSideProps() {
-  
-  let auth = new google.auth.GoogleAuth({
-    credentials: {
-      client_email: process.env.GOOGLE_CLIENT_EMAIL,
-      private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n")
-    },
-    projectId: process.env.GOOGLE_PROJECT_ID,
-    scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly']
-  });
-  let sheets = google.sheets({ version: 'v4', auth });    
-
-  const range = `UpcomingPrograms!C2:G10`;
-  const response = await sheets.spreadsheets.values.get({
-    spreadsheetId: process.env.SHEET_ID,
-    range,
-  });
-  
-  return {
-    props: {
-      events: response.data.values.map((event) => {
-        return {
-          fromDateTime: event[0],
-          toDateTime: event[1],
-          title: event[2],
-          category: event[3],
-          location: event[4]
-        }
-      })
-    }
-  }
+  return getUpcomingSessions("WP");
 }
 
 export default function Home({ events }) {
-
+  
   const eventCards = events.map((event) => {
     return {
       fromDateTime: new Date(event.fromDateTime),

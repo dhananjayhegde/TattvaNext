@@ -16,7 +16,7 @@ export default function EventCard({ fromDateTime, toDateTime, title, location, c
                 <h3 className='text-4xl font-bold text-gray-600'>{ fromDateTime.toLocaleDateString('en-US', dateNumericFormat) }</h3>
             </div>
             <div className='flex flex-col justify-start basis-3/4 mx-1 p-2'>
-                <h2 className='text-2xl font-bold text-gray-600'>{ title }</h2>
+                <h2 className='text-2xl font-bold text-gray-600'>{ category }</h2>
                 <p className='text-sm text-gray-500 mt-2'>{ fromDateTime.toLocaleDateString('en-US', monthDateFormat) + ' - ' + toDateTime.toLocaleDateString('en-US', monthDateFormat) + ' (' + fromDateTime.toLocaleDateString('en-US', weekdayShortFormat) + ' - ' + toDateTime.toLocaleDateString('en-US', weekdayShortFormat ) + ')' }</p>
                 <p className='text-sm text-gray-500'>{ fromDateTime.toLocaleTimeString('en-US', time12HourFomat) + ' - ' + toDateTime.toLocaleTimeString('en-US', time12HourFomat) }</p>
                 <p className='text-xs text-gray-500 mt-2'>{ location }</p>
