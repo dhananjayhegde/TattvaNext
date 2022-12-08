@@ -34,21 +34,43 @@ const getUpcomingSessionsFromGoogleSheets = async () => {
 
 const getUpcomingSessionsFromWP = async () => {
     const apiUrl = process.env.WP_HOST + process.env.WP_REST_URL + 'session'
-    const resultData = await fetch(apiUrl).then((response) => response.json());
+    const resultData = await fetch(apiUrl)
+        .then(async response => {
+            const isJson = response.headers.get('content-type').includes('application/json');
+            const data = isJson ? await response.json() : null;
 
-    return {
-        props: {
-            events: resultData.map((session) => {
-                return {
-                    fromDateTime: session.start_date_time,
-                    toDateTime: session.end_date_time,
-                    title: session.post_title,
-                    category: session.hatha_program[0].post_title,
-                    location: session.location_name,
-                    locatoin_address: session.location,
-                    location_map_url: session.location_url
-                }
-            })
+            if(!response.ok){
+                const error = (data && data.message) || response.status;
+                return Promise.reject(error);
+            }
+
+            return data;
+        })
+        .catch(error => {
+            console.error('Error during fetch: ' + error);            
+        });
+
+    if(!resultData){
+        return {
+            props: {
+                message: 'No sessions planned now'
+            }
+        }
+    } else {    
+        return {
+            props: {
+                events: resultData.map((session) => {
+                    return {
+                        fromDateTime: session.start_date_time,
+                        toDateTime: session.end_date_time,
+                        title: session.post_title,
+                        category: session.hatha_program[0].post_title,
+                        location: session.location_name,
+                        locatoin_address: session.location,
+                        location_map_url: session.location_url
+                    }
+                })
+            }
         }
     }
 }

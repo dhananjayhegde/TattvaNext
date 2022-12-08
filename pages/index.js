@@ -5,14 +5,15 @@ import styles from '../styles/Home.module.css'
 import LinkButton from '../components/LinkButton'
 import EventCard from '../components/EventCard'
 import getUpcomingSessions from '../utils/HathaSessionUtil'
+import Alert from '../components/Alert'
 
 export async function getServerSideProps() {
   return getUpcomingSessions("WP");
 }
 
-export default function Home({ events }) {
+export default function Home({ events, message }) {
   
-  const eventCards = events.map((event) => {
+  const eventCards = events ? events.map((event) => {
     return {
       fromDateTime: new Date(event.fromDateTime),
       toDateTime: new Date(event.toDateTime),
@@ -32,7 +33,8 @@ export default function Home({ events }) {
             location={fe.location}
             category={fe.category} />
       );
-    });
+    })
+    : <Alert message={message} type="warning" />;
   
   return (
     <div className='flex flex-col min-h-screen'>
@@ -62,7 +64,7 @@ export default function Home({ events }) {
         { eventCards }
         
         <div className='hidden md:block break-row'></div>
-        <LinkButton btnClass='my-8 btn btn-primary' href="https://www.instamojo.com/pay_tattvahy/?ref=profile_bar" text="Register"/>                    
+        { events? <LinkButton btnClass='my-8 btn btn-primary' href="https://www.instamojo.com/pay_tattvahy/?ref=profile_bar" text="Register"/> : "" }
       </section>
       
       <section className='flex flex-col md:flex-row justify-start mt-10 md:px-32 pb-8 min-h-min bg-slate-100'>
