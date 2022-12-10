@@ -75,6 +75,14 @@ const getUpcomingSessionsFromWP = async () => {
     }
 }
 
+export async function getFeaturedImageFromWP( imageUrl ){
+    let imageObjectUrl = await fetch( imageUrl ).then( response => response.blob() ).then( imageBlob => {
+        return URL.createObjectURL( imageBlob );
+    });
+
+    return imageObjectUrl;
+}
+
 export default function getUpcomingSessions(source){
     if(source === "GoogleSheets") {
         return getUpcomingSessionsFromGoogleSheets();
