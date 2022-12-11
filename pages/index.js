@@ -4,14 +4,24 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import LinkButton from '../components/LinkButton'
 import EventCard from '../components/EventCard'
-import getUpcomingSessions from '../utils/HathaSessionUtil'
+import getUpcomingSessions from '../utils/HathaUtils'
+import { getHathaPrograms } from '../utils/HathaUtils'
 import Alert from '../components/Alert'
+import ProgramCard from '../components/ProgramCard'
 
 export async function getServerSideProps() {
-  return getUpcomingSessions("WP");
+  const programs = await getHathaPrograms();
+  const events = await getUpcomingSessions("WP");
+  
+  return {
+      props: {          
+          programs: programs,
+          events: events
+      }
+  }
 }
 
-export default function Home({ events, message }) {
+export default function Home({ events, programs, message }) {
   
   const eventCards = events ? events.map((event) => {
     return {
@@ -35,6 +45,10 @@ export default function Home({ events, message }) {
       );
     })
     : <Alert message={message} type="warning" />;
+  
+  
+  const programCards = programs.map((program) => <ProgramCard {...program} /> );
+  
   
   return (
     <div className='flex flex-col min-h-screen'>
@@ -70,60 +84,9 @@ export default function Home({ events, message }) {
       <section className='flex flex-col md:flex-row justify-start mt-10 md:px-32 pb-8 min-h-min bg-slate-100'>
         <div className='flex flex-col items-center mx-8 md:mx-32'>
           {/* Section Heading */}
+          
           <h2 className='text-4xl md:text-6xl font-bold text-gray-600 my-8 pb-4 border-b-2 border-slate-200/0.5'>Programs Offered</h2>
-          
-          {/* Cards */}        
-          
-          <div className='card-2 flex flex-col md:flex-row min-h-24 w-full rounded-lg my-4 py-4 md:py-8 px-4 md:px-8 overflow-hidden bg-white shadow-lg shadow-slate-100/0.5'>
-            <div className='flex flex-col justify-center items-center basis-1/4'>
-              <img src="/images/surya-kriya.png" alt="Surya Kriya" className="object-cover object-center w-full h-full drop-shadow-2"/>
-            </div>
-            <div className='flex flex-col justify-start basis-3/4 mx-1 p-2 mx-2'>
-              <h2 className='text-3xl md:text-4xl font-bold text-gray-700'>Surya Kriya</h2>
-              <p className='text-sm md:text-base italic text-gray-500 my-2'>
-                Surya Kriya is a potent 21-step yogic practice of tremendous antiquity, designed as a holistic process for health and inner wellbeing.
-              </p>
-              <ul className='text-sm md:text-base text-gray-600 mt-2 list-disc list-inside'>
-                <li>Develops mental clarity & focus</li>
-                <li>Remedies weak constitution</li>
-                <li>Boosts vigor & viatlity</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className='card-2 flex flex-col md:flex-row min-h-24 w-full rounded-lg my-4 py-4 md:py-8 px-4 md:px-8 overflow-hidden bg-white shadow-lg shadow-slate-100/0.5'>
-            <div className='flex flex-col justify-center items-center basis-1/4 mx-2'>
-              <img src="/images/angamardana.png" alt="Angamardana" className="object-cover object-center w-full h-full drop-shadow-2"/>
-            </div>
-            <div className='flex flex-col justify-start basis-3/4 mx-1 p-2'>
-              <h2 className='text-3xl md:text-4xl font-bold text-gray-700'>Angamardana</h2>
-              <p className='text-sm md:text-base italic text-gray-500 my-2'>
-              Angamardana is a powerful system to bring the human mechanism to ultimate health and wellbeing, and above all, to blossom into a full-fledged human being.
-              </p>
-              <ul className='text-sm md:text-base text-gray-600 mt-2 list-disc list-inside'>
-                <li>Strengths the spine</li>
-                <li>Builds physical strength</li>
-                <li>Prepares the body for Hatha Yoga</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className='card-2 flex flex-col md:flex-row  min-h-24 w-full rounded-lg my-4 py-4 md:py-8 px-4 md:px-8 overflow-hidden bg-white shadow-lg shadow-slate-100/0.5'>
-            <div className='flex flex-col justify-center items-center basis-1/4 mx-2'>
-              <img src="/images/yogasanas.png" alt="Yogasanas" className="object-cover object-center w-full h-full drop-shadow-2"/>
-            </div>
-            <div className='flex flex-col justify-start basis-3/4 mx-1 p-2'>
-              <h2 className='text-3xl md:text-4xl font-bold text-gray-700'>Yogasanas</h2>
-              <p className='text-sm md:text-base italic text-gray-500 my-2'>
-              Learn a set of 21 powerful postures to enable the system to sustain higher dimensions of energy.
-              </p>
-              <ul className='text-sm md:text-base text-gray-600 mt-2 list-disc list-inside'>
-                <li>Relieves from chronic health issues</li>
-                <li>Stabilizes body & mind</li>
-                <li>Decelerates of aging process</li>
-              </ul>
-            </div>
-          </div>
+          { programCards }
 
           <LinkButton 
             btnClass='my-8 btn btn-primary' 
