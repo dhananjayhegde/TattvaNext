@@ -24,10 +24,11 @@ export default function Layout({children}) {
             property="og:image"
             content="/public/images/hero_image.png"
           />
+          {/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" /> */}
         </Head>        
         <main>
           <NavBar />
-          {children}
+            {children}
           <Footer />
         </main>
     </>

@@ -8,6 +8,7 @@ import getUpcomingSessions from '../utils/HathaUtils'
 import { getHathaPrograms } from '../utils/HathaUtils'
 import Alert from '../components/Alert'
 import ProgramCard from '../components/ProgramCard'
+import generateEventCards from '../utils/Utils'
 
 export async function getServerSideProps() {
   const programs = await getHathaPrograms();
@@ -22,32 +23,12 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ events, programs, message }) {
+    
+  const { error: programError } = programs
+  const { error: eventsError } = events  
   
-  const eventCards = events ? events.map((event) => {
-    return {
-      fromDateTime: new Date(event.fromDateTime),
-      toDateTime: new Date(event.toDateTime),
-      title: event.title,
-      category: event.category,
-      location: event.location
-    }
-  }).filter(event => event.fromDateTime > new Date())
-    .sort((event1, event2) => event1.fromDateTime - event2.fromDateTime)
-    .map((fe, index) => {
-      return (
-        <EventCard 
-            key={index}
-            fromDateTime={fe.fromDateTime}
-            toDateTime={fe.toDateTime}
-            title={fe.title}
-            location={fe.location}
-            category={fe.category} />
-      );
-    })
-    : <Alert message={message} type="warning" />;
-  
-  
-  const programCards = programs.map((program) => <ProgramCard {...program} /> );
+  const eventCards = generateEventCards( events );
+  const programCards = programs.programs.map((program) => <ProgramCard {...program} /> );
   
   
   return (
@@ -62,7 +43,7 @@ export default function Home({ events, programs, message }) {
           <h2 className='text-gray-600 font-bold text-4xl md:text-6xl'>
             It is what you <span className='text-6xl md:text-8xl'>become!</span>
           </h2>
-          <p className='text-gray-600'>
+          <p className='text-gray-600 mt-4'>
             We conduct both week-long workshops and weekend practice sessions.  Choose what suits your need best.
           </p>
           <LinkButton btnClass='my-8 btn btn-primary hidden md:block' href="https://www.instamojo.com/pay_tattvahy/?ref=profile_bar" text="Class Schedule"/>             
@@ -78,7 +59,7 @@ export default function Home({ events, programs, message }) {
         { eventCards }
         
         <div className='hidden md:block break-row'></div>
-        { events? <LinkButton btnClass='my-8 btn btn-primary' href="https://www.instamojo.com/pay_tattvahy/?ref=profile_bar" text="Register"/> : "" }
+        { !eventsError? <LinkButton btnClass='my-8 btn btn-primary' href="https://www.instamojo.com/pay_tattvahy/?ref=profile_bar" text="Register"/> : "" }
       </section>
       
       <section className='flex flex-col md:flex-row justify-start mt-10 md:px-32 pb-8 min-h-min bg-slate-100'>
