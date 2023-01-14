@@ -53,18 +53,13 @@ const Program = ( { events, programs } ) => {
     const { error: eventsError } = events
 
     const program = programs.programs[0]
-    // const heroSectionStyle = "flex flex-col md:flex-row md:flex-wrap justify-center md:items-center mt-24 mx-8 bg-[url('" + program.featured_image_abs_url + "')]"
-
-    console.log(program.terms_and_conditions)
+    // console.log(program.terms_and_conditions)
     
     return (
         <div className='flex flex-col min-h-screen'>      
             {/* Hero section */}      
             <section 
                 className='h-screen flex flex-col md:flex-row md:flex-wrap justify-center mt-10 mx-40 px-10'
-                // style={{
-                //     backgroundImage: `url(${program.featured_image_abs_url})`
-                // }}
             >                
                 <div className='flex flex-col justify-center content mb-4 w-1/2'>
                     <p className='text-gray-500 font-semibold text-lg md:text-4xl underline'>
@@ -128,8 +123,6 @@ const Program = ( { events, programs } ) => {
             </section>
       </div>
     )
-    
-    
 }
 
 export default Program
