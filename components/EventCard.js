@@ -22,16 +22,16 @@ export default function EventCard({ fromDateTime, toDateTime, title, location, c
                 <h2 className='text-xl font-bold text-gray-700'>
                     { cardTitle }
                 </h2>
-                <p className='text-md text-gray-600 mt-2'>
+                <p className='text-sm text-gray-600 mt-2'>
                     { cardSubtitle }
                 </p>
-                <p className='text-md text-gray-600'>
+                <p className='text-sm text-gray-600'>
                     { fromDateTime.toLocaleTimeString('en-US', time12HourFomat) + ' - ' + toDateTime.toLocaleTimeString('en-US', time12HourFomat) }
                 </p>
-                <p className='text-md text-gray-600'>
+                <p className='text-sm text-gray-600 flex-1'>
                     { location }
                 </p>
-                <p className='text-lg text-gray-600 mt-2'>
+                <p className='text-md text-gray-600 mt-2'>
                     Rs. { price } / person
                 </p>
             </div>

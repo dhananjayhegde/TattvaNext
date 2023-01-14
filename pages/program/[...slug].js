@@ -72,6 +72,32 @@ function ConditionsList(conditions){
     )
 }
 
+const HeroCard = (props) => {
+    const program = props.program
+    return (
+        <section 
+            style={{
+                backgroundImage: `url('${program.featured_image_abs_url}')`,
+                marginTop:"-50px"
+
+            }} 
+            className='h-screen flex md:flex-wrap justify-center mt-10 overflow-hidden bg-fixed bg-cover bg-left'
+        >                
+            <div className='flex flex-col justify-center p-8 md:p-24 md:w-full bg-gray-700/30 backdrop-brightness-50 '>
+                <p className='text-slate-200 font-semibold text-xl md:text-4xl italic'>
+                    {program.punch_line}
+                </p>
+                <h2 className='break-words text-slate-200 font-bold text-6xl md:text-8xl'>
+                    {program.title}
+                </h2>
+                <p className='text-slate-100 mt-4 text-xl md:text-2xl'>
+                    {program.excerpt}
+                </p>
+            </div>
+        </section>
+    )
+}
+
 const Program = ( { events, programs } ) => {
     
     const { error: programError } = programs
@@ -83,32 +109,7 @@ const Program = ( { events, programs } ) => {
     return (
         <div className='flex flex-col min-h-screen'>      
             {/* Hero section */}      
-            <section 
-                className='h-screen flex flex-col-reverse md:flex-row md:flex-wrap justify-start md:justify-center mt-10 md:mx-40 md:px-10 overflow-hidden'
-            >                
-                <div className='flex flex-col justify-start md:justify-center px-10 md:px-0 mb-4 w-full md:w-1/2'>
-                    <p className='text-gray-500 font-semibold text-lg md:text-4xl underline'>
-                        {program.punch_line}
-                    </p>
-                    <h2 className='break-words text-gray-600 font-bold text-5xl md:text-8xl'>
-                        {program.title}
-                    </h2>
-                    <p className='text-gray-600 mt-4 text-xl md:text-2xl'>
-                        {program.excerpt}
-                    </p>
-                    {/* <LinkButton btnClass='my-8 btn btn-primary hidden md:block' href="https://www.instamojo.com/pay_tattvahy/?ref=profile_bar" text="Class Schedule"/>              */}
-                </div>
-                <div className='h-3/4 w-auto md:w-1/2 relative'>
-                    <Image 
-                        src={program.featured_image_abs_url} 
-                        alt={program.title} 
-                        layout="fill" 
-                        className="object-cover drop-shadow-10"
-                    />
-                </div>
-                
-                {/* <LinkButton btnClass='my-8 btn btn-primary md:hidden' href="https://www.instamojo.com/pay_tattvahy/?ref=profile_bar" text="Class Schedule"/> */}
-            </section>
+            <HeroCard program={program}/>
 
             {/* Upcoming Programs section */}
             <section className='flex flex-col md:flex-row md:flex-wrap md:gap-4 justify-start md:justify-center mt-10 mx-8 md:mx-32 min-h-min'>
