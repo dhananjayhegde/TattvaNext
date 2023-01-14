@@ -109,7 +109,8 @@ const _mapSessionsToResponse = ( resultData ) => {
             category: session.hatha_program[0].post_title,
             location: session.location_name,
             locatoin_address: session.location,
-            location_map_url: session.location_url
+            location_map_url: session.location_url,
+            price: session.price
         }
     })
 }
