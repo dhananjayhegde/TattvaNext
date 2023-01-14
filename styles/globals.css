@@ -66,21 +66,21 @@ a {
 }
 
 .external-list > ul {
-  @apply text-gray-600 mt-2 list-inside;
+  @apply text-slate-900 mt-2 list-inside;
 }
 
 .external-list > ul > li::before{
   content: "\2055";
-  @apply text-gray-500 pr-2 text-lg;
+  @apply text-slate-600 pr-2 text-lg;
 }
 
 .external-list > ul > li > ul {
-  @apply text-gray-600 mt-2 ml-8 md:ml-12 list-inside;
+  @apply text-slate-900 mt-2 ml-8 md:ml-12 list-inside;
 }
 
 .external-list > ul > li > ul > li::before {  
   content: "\21E2";
-  @apply text-gray-500 pr-2;
+  @apply text-slate-600 pr-2;
 }
 
 /* *Stylish Borders */

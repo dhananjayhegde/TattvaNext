@@ -144,6 +144,19 @@ export async function getUpcomingSessionsByProgram( programId ){
     return response
 }
 
+export async function getUpcomingSessionsByProgramSlug( programSlug ){
+    const resultData = await _doFetchToWPForJson( 'session?program-slug=' + programSlug )
+    let response = {}
+
+    if(!resultData){
+        response.error = 'No sessions planned now'
+    } else {    
+        response.events = _mapSessionsToResponse( resultData )
+    }
+
+    return response
+}
+
 
 
 export default function getUpcomingSessions(source){

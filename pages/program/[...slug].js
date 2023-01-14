@@ -7,30 +7,34 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import LinkButton from '../../components/LinkButton'
 
 import { getHathaProgramBySlug } from '../../utils/HathaUtils'
-import { getUpcomingSessionsByProgram } from '../../utils/HathaUtils'
+import { getUpcomingSessionsByProgram, getUpcomingSessionsByProgramSlug } from '../../utils/HathaUtils'
 import generateEventCards from '../../utils/Utils'
 
 export async function getServerSideProps(context) {
   
-  const { slug } = context.params;    
+    const { slug } = context.params;    
   
-  const programsResp  = await getHathaProgramBySlug( slug[0] );    
-  const eventsResp     = programsResp.error ? { error: 'Invalid Program, check the URL' } : await getUpcomingSessionsByProgram( programsResp.programs[0].id );
-  
-  return {
-      props: {          
-          programs: programsResp,
-          events: eventsResp
-      }
-  }
+//   const programsResp  = await getHathaProgramBySlug( slug[0] );    
+//   const eventsResp     = programsResp.error ? { error: 'Invalid Program, check the URL' } : await getUpcomingSessionsByProgram( programsResp.programs[0].id );    
+    
+    const [programsResp, eventsResp] = await Promise.all([
+        getHathaProgramBySlug( slug[0] ),
+        getUpcomingSessionsByProgramSlug( slug[0] )
+    ])
+    return {
+        props: {          
+            programs: programsResp,
+            events: eventsResp
+        }
+    }
 }
 
 function BenefitsList(benefits){
     return (        
-        <ul className='text-gray-600 mt-2 list-inside'>
+        <ul className='text-slate-900 mt-2 list-inside'>
             { 
                 Object.values(benefits).map((item, index) => {
-                    return item && <li key={index}><FontAwesomeIcon className='pr-2 text-gray-400' icon={['fas', 'star-of-life']}/>{ item }</li>
+                    return item && <li key={index}><FontAwesomeIcon className='pr-3 text-slate-400' icon={['fas', 'asterisk']}/>{ item }</li>
                 }) 
             }
         </ul>
@@ -49,15 +53,20 @@ const Program = ( { events, programs } ) => {
     const { error: eventsError } = events
 
     const program = programs.programs[0]
+    // const heroSectionStyle = "flex flex-col md:flex-row md:flex-wrap justify-center md:items-center mt-24 mx-8 bg-[url('" + program.featured_image_abs_url + "')]"
 
     console.log(program.terms_and_conditions)
     
     return (
         <div className='flex flex-col min-h-screen'>      
             {/* Hero section */}      
-            <section className='flex flex-col md:flex-row md:flex-wrap justify-center md:items-center mt-24 mx-8'>
-                {/* <Image src={program.featured_image_abs_url} alt={program.title} layout="fill" className="object-cover object-top w-full h-full drop-shadow-2"/> */}
-                <div className='flex flex-col justify-end content mb-4 md:basis-1/2'>
+            <section 
+                className='h-screen flex flex-col md:flex-row md:flex-wrap justify-center mt-10 mx-40 px-10'
+                // style={{
+                //     backgroundImage: `url(${program.featured_image_abs_url})`
+                // }}
+            >                
+                <div className='flex flex-col justify-center content mb-4 w-1/2'>
                     <p className='text-gray-500 font-semibold text-lg md:text-4xl underline'>
                         {program.punch_line}
                     </p>
@@ -68,6 +77,14 @@ const Program = ( { events, programs } ) => {
                         {program.excerpt}
                     </p>
                     {/* <LinkButton btnClass='my-8 btn btn-primary hidden md:block' href="https://www.instamojo.com/pay_tattvahy/?ref=profile_bar" text="Class Schedule"/>              */}
+                </div>
+                <div className='w-1/2 relative'>
+                    <Image 
+                        src={program.featured_image_abs_url} 
+                        alt={program.title} 
+                        layout="fill" 
+                        className="object-cover drop-shadow-10"
+                    />
                 </div>
                 
                 {/* <LinkButton btnClass='my-8 btn btn-primary md:hidden' href="https://www.instamojo.com/pay_tattvahy/?ref=profile_bar" text="Class Schedule"/> */}
@@ -86,7 +103,7 @@ const Program = ( { events, programs } ) => {
             {/* details section */}
             <section className='flex flex-col md:flex-row md:flex-wrap md:gap-4 justify-start md:justify-center mt-10 mx-8 md:mx-96 min-h-min'>
                 
-                <div className='text-gray-600 mt-4 text-lg md:text-2xl' dangerouslySetInnerHTML={{ __html : program.details }} />
+                <div className='text-slate-800 mt-4 text-lg md:text-xl' dangerouslySetInnerHTML={{ __html : program.details }} />
                 
             </section>
             
@@ -105,7 +122,7 @@ const Program = ( { events, programs } ) => {
                 <h3 className='text-2xl md:text-4xl font-bold text-gray-600 my-8 pb-4 border-b-2 border-slate-200/0.5'>Note</h3>
                 
                 <div 
-                    className='external-list text-base md:text-xl' 
+                    className='external-list text-base md:text-xl text-slate-900' 
                     dangerouslySetInnerHTML={{ __html : program.terms_and_conditions }} 
                 />
             </section>
