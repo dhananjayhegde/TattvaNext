@@ -10,26 +10,7 @@ import Alert from '../components/Alert'
 import ProgramCard from '../components/ProgramCard'
 import generateEventCards from '../utils/Utils'
 
-// export async function getServerSideProps() {
-//   // const programs = await getHathaPrograms();
-//   // const events = await getUpcomingSessions("WP");
-
-//   const [programs, events] = await Promise.all([
-//     getHathaPrograms(),
-//     getUpcomingSessions("WP")
-//   ])
-  
-//   return {
-//       props: {          
-//           programs: programs,
-//           events: events
-//       }
-//   }
-// }
-
 export async function getStaticProps() {
-  // const programs = await getHathaPrograms();
-  // const events = await getUpcomingSessions("WP");
 
   const [programs, events] = await Promise.all([
     getHathaPrograms(),

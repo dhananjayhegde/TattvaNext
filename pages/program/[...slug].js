@@ -38,22 +38,6 @@ export async function getStaticProps(context) {
     }
 }
 
-// export async function getServerSideProps(context) {
-  
-//     const { slug } = context.params; 
-    
-//     const [programsResp, eventsResp] = await Promise.all([
-//         getHathaProgramBySlug( slug[0] ),
-//         getUpcomingSessionsByProgramSlug( slug[0] )
-//     ])
-//     return {
-//         props: {          
-//             programs: programsResp,
-//             events: eventsResp
-//         }
-//     }
-// }
-
 function BenefitsList(benefits){
     return (        
         <ul className='text-slate-900 mt-2 list-inside'>
