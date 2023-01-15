@@ -1,6 +1,7 @@
 import EventCard from '../components/EventCard'
 import EventCard2 from '../components/EventCard2'
 import Alert from '../components/Alert'
+import WhatsappButton from '../components/WhatsappButton';
 
 const generateEventCards = ( {events, error} ) => {
     
@@ -50,7 +51,7 @@ export function generateEventCards2( {events, error} ){
             />
         );
       })
-      : <Alert message={error} type="warning" />;
+      : <WhatsappButton /> // <Alert message={error} type="warning" />;
 
   return eventCards;
 }

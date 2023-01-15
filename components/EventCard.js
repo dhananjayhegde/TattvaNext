@@ -13,7 +13,7 @@ export default function EventCard({ fromDateTime, toDateTime, title, location, c
     const cardSubtitle = fromDateTime.toLocaleDateString('en-US', monthDateFormat) + ' - ' + toDateTime.toLocaleDateString('en-US', monthDateFormat) + ' (' + fromDateTime.toLocaleDateString('en-US', weekdayShortFormat) + ' - ' + toDateTime.toLocaleDateString('en-US', weekdayShortFormat ) + ')'
   
     return (
-        <div className='card-1 flex min-h-24 md:w-80 rounded-lg border-2 border-amber-100 my-4 shadow-lg shadow-slate-100/0.7'>
+        <div className='card-1 flex min-h-24 md:w-96 rounded-lg border-2 border-amber-100 my-4 shadow-lg shadow-slate-100/0.7'>
             <div className='flex flex-col justify-center rounded-l-lg items-center basis-1/4 bg-amber-200'>
                 <p className='text-lg font-bold text-gray-600 uppercase'>{ fromDateTime.toLocaleDateString('en-US', monthShortFormat) }</p>
                 <h3 className='text-4xl font-bold text-gray-800'>{ fromDateTime.toLocaleDateString('en-US', dateNumericFormat) }</h3>

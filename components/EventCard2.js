@@ -14,7 +14,7 @@ export default function EventCard2({ fromDateTime, toDateTime, title, location, 
     const cardSubtitle = fromDateTime.toLocaleDateString('en-US', weekdayShortFormat) + ' - ' + toDateTime.toLocaleDateString('en-US', weekdayShortFormat )
   
     return (
-        <div className='card-1 flex min-h-24 md:w-80 rounded-lg border-2 border-amber-100 my-4 shadow-lg shadow-slate-100/0.7'>
+        <div className='card-1 flex min-h-24 md:w-96 rounded-lg border-2 border-amber-100 my-4 shadow-lg shadow-slate-100/0.7'>
             <div className='flex flex-col justify-center rounded-l-lg items-center basis-1/4 bg-amber-200'>
                 <p className='text-lg font-bold text-gray-500 uppercase'>{ fromDateTime.toLocaleDateString('en-US', monthShortFormat) }</p>
                 <h3 className='text-4xl font-bold text-gray-600'>{ fromDateTime.toLocaleDateString('en-US', dateNumericFormat) }</h3>
@@ -23,16 +23,16 @@ export default function EventCard2({ fromDateTime, toDateTime, title, location, 
                 <h2 className='text-2xl font-bold text-gray-600'>
                     { cardTitle }
                 </h2>
-                <p className='text-sm text-gray-600'>
+                <p className='text-md text-gray-600'>
                     { fromDateTime.toLocaleTimeString('en-US', time12HourFomat) + ' - ' + toDateTime.toLocaleTimeString('en-US', time12HourFomat) }
                 </p>
-                <p className='flex-1 text-sm text-gray-500 mt-2 underline'>
+                <p className='flex-1 text-md text-gray-500 mt-2 underline'>
                     <a href={location_map_url} target="_blank" rel="noreferrer">
                         <FontAwesomeIcon className='pr-3' icon={['fas', 'fa-arrow-up-right-from-square']}/>
                         {location}
                     </a>
                 </p>
-                <p className='text-md text-gray-600 mt-2'>
+                <p className='text-md font-semibold text-gray-600 mt-8'>
                     Rs. { price } / person
                 </p>
             </div>

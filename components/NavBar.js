@@ -24,7 +24,7 @@ export default function NavBar({}){
                 <FontAwesomeIcon className='mr-2 my-2 text-2xl' icon={['fab', 'whatsapp']}/>
                 <a href='https://wa.me/918099664362'>Contact Me</a>
             </div> */}
-            <nav className="sticky top-0 z-10 flex justify-end w-full bg-gray-100 backdrop-blur-3xl bg-opacity-30 text-gray-700 font-bold px-4 py-4  m-auto relative ">
+            <nav className="sticky top-0 z-10 flex justify-end w-full bg-slate-100 text-slate-700 text-lg font-bold px-4 py-4 m-auto relative ">
                 {/* <div className="logo-container relative">
                     <figure className="absolute -left-8 -top-8 p-2 w-20 h-20 overflow-hidden rounded-full border border-4 border-slate-100 shadow-lg bg-[#292826] shadow-grey-500/40">
                         <img src="/tattva_logo__man-only-orange-black-bg.png" alt="Logo" className="object-cover"/>

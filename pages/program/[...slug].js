@@ -5,6 +5,9 @@ import LinkButton from '../../components/LinkButton'
 import { getHathaProgramBySlug, getHathaPrograms } from '../../utils/HathaUtils'
 import { getUpcomingSessionsByProgram, getUpcomingSessionsByProgramSlug } from '../../utils/HathaUtils'
 import { generateEventCards2 } from '../../utils/Utils'
+import ImageGallery from '../../components/ImageGallery'
+import TeacherRamya from '../../components/TeacherRamya'
+import getGalleryImages from '../../utils/ImagekitUtil'
 
 export async function getStaticPaths(){
     const programs = await getHathaPrograms()
@@ -24,15 +27,20 @@ export async function getStaticProps(context) {
   
     const slug = context.params.slug[0]; 
     
-    const [programsResp, eventsResp] = await Promise.all([
+    const [programsResp, eventsResp, galleryImages] = await Promise.all([
         getHathaProgramBySlug( slug ),
-        getUpcomingSessionsByProgramSlug( slug )
+        getUpcomingSessionsByProgramSlug( slug ),
+        getGalleryImages( slug )
     ])
     
     return {
         props: {          
             programs: programsResp,
-            events: eventsResp
+            events: eventsResp,
+            galleryImages: galleryImages.map(image => ({
+                url: image.url,
+                thumbnail: image.thumbnail
+            }))
         },
         revalidate: 300
     }
@@ -82,13 +90,12 @@ const HeroCard = (props) => {
     )
 }
 
-const Program = ( { events, programs } ) => {
+const Program = ( { events, programs, galleryImages } ) => {
     
     const { error: programError } = programs
     const { error: eventsError } = events
 
     const program = programs.programs[0]
-    // console.log(program.terms_and_conditions)
     
     return (
         <div className='flex flex-col min-h-screen'>      
@@ -98,8 +105,17 @@ const Program = ( { events, programs } ) => {
             {/* Upcoming Programs section */}
             <section className='flex flex-col md:flex-row md:flex-wrap md:gap-4 justify-start md:justify-center mt-10 mx-8 md:mx-32 min-h-min'>
                 
+                { !eventsError 
+                    ? <h3 className='text-3xl md:text-4xl font-bold text-gray-600 my-8 pb-4 border-b-2 border-slate-200/0.5'>Upcoming {program.title} sessoins</h3>                         
+                    : ""
+                }
+
+                { !eventsError ? <div className='hidden md:block break-row'></div> : "" }
+                
                 { /* Event cards */ }
-                { generateEventCards2( events ) }
+                <div className='flex flex-col md:flex-row md:flex-wrap md:gap-4 justify-start md:justify-center '>
+                    { generateEventCards2( events ) }
+                </div>
                 
                 <div className='hidden md:block break-row'></div>
                 { !eventsError ? <LinkButton btnClass='my-8 btn btn-primary' href="https://www.instamojo.com/pay_tattvahy/?ref=profile_bar" text="Register"/> : "" }
@@ -131,6 +147,15 @@ const Program = ( { events, programs } ) => {
                     dangerouslySetInnerHTML={{ __html : program.terms_and_conditions }} 
                 />
             </section>
+
+            { galleryImages.length > 0
+                ?   <section className='w-screen mt-10 px-8 py-8 md:px-48 md:py-24 bg-slate-900'>
+                        <ImageGallery images={galleryImages} />
+                    </section>
+                : ""
+            }
+
+            <TeacherRamya />
       </div>
     )
 }
