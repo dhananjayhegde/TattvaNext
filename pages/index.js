@@ -54,7 +54,7 @@ export default function Home({ events, programs, message }) {
           </p>
           <LinkButton btnClass='my-8 btn btn-primary hidden md:block' href="https://www.instamojo.com/pay_tattvahy/?ref=profile_bar" text="Class Schedule"/>             
         </div>
-        <img src="/images/ramya__1.png" alt="Logo" className="object-contain md:w-1/3 md:h-auto md:basis-1/2"/>
+        <img src="/images/hero_home.png" alt="Logo" className="object-contain md:w-1/3 md:h-auto md:basis-1/2"/>
         <LinkButton btnClass='my-8 btn btn-primary md:hidden' href="https://www.instamojo.com/pay_tattvahy/?ref=profile_bar" text="Class Schedule"/>
       </section>
       
