@@ -20,16 +20,16 @@ export default function NavBar({}){
     
     return (
         <>
-            <div className='sticky top-0 z-40 w-full inline-flex justify-center rounded-br-lg rounded-bl-lg items-center bg-gradient-to-r from-blue-500 to-purple-600 text-slate-100 font-semibold'>
+            {/* <div className='sticky top-0 z-40 w-full inline-flex justify-center rounded-br-lg rounded-bl-lg items-center bg-gradient-to-r from-blue-500 to-purple-600 text-slate-100 font-semibold'>
                 <FontAwesomeIcon className='mr-2 my-2 text-2xl' icon={['fab', 'whatsapp']}/>
                 <a href='https://wa.me/918099664362'>Contact Me</a>
-            </div>
-            <nav className="z-10 flex justify-between w-4/5 bg-[#292826] text-gray-200 font-bold px-4 py-4 rounded-lg m-auto relative top-10">
-                <div className="logo-container relative">
+            </div> */}
+            <nav className="sticky top-0 z-10 flex justify-end w-full bg-slate-100 text-slate-700 text-lg font-bold px-4 py-4 m-auto relative ">
+                {/* <div className="logo-container relative">
                     <figure className="absolute -left-8 -top-8 p-2 w-20 h-20 overflow-hidden rounded-full border border-4 border-slate-100 shadow-lg bg-[#292826] shadow-grey-500/40">
                         <img src="/tattva_logo__man-only-orange-black-bg.png" alt="Logo" className="object-cover"/>
                     </figure>
-                </div>
+                </div> */}
                 <div className='md:hidden'>
                     {renderMobileMenuButton()}
                 </div>                

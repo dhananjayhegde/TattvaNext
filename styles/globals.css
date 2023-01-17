@@ -38,11 +38,49 @@ a {
 }
 
 .btn-primary {
-  @apply text-gray-100 ring-2 ring-pink-500/50 ring-offset-2 bg-gradient-to-r from-pink-500 to-blue-600;
+  @apply text-gray-100 ring-2 ring-pink-400/50 ring-offset-2 bg-gradient-to-r from-pink-600 to-blue-500;
 }
 
 .btn-secondary {
   @apply text-gray-700 ring-2 ring-pink-500/75 ring-offset-2;
+}
+
+.alert {
+  @apply py-2 px-8 rounded-lg tracking-wide text-center;
+}
+
+.error {
+  @apply bg-rose-300/50;
+}
+
+.warning {
+  @apply bg-amber-300/50;
+}
+
+.info {
+  @apply bg-blue-300/50;
+}
+
+.ok {
+  @apply bg-teal-300/50;
+}
+
+.external-list > ul {
+  @apply text-slate-900 mt-2 list-inside;
+}
+
+.external-list > ul > li::before{
+  content: "\2055";
+  @apply text-slate-600 pr-2 text-lg;
+}
+
+.external-list > ul > li > ul {
+  @apply text-slate-900 mt-2 ml-8 md:ml-12 list-inside;
+}
+
+.external-list > ul > li > ul > li::before {  
+  content: "\21E2";
+  @apply text-slate-600 pr-2;
 }
 
 /* *Stylish Borders */
