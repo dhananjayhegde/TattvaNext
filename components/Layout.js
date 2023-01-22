@@ -7,6 +7,15 @@ export default function Layout({children}) {
   return (    
     <>        
         <Head>
+          {/* <!-- Google tag (gtag.js) --> */}
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-LVP9M3QXMR"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){ dataLayer.push(arguments) }
+            gtag('js', new Date());
+
+            gtag('config', 'G-LVP9M3QXMR');
+          </script>
           <title>
             Best Hathayoga classes in Bengaluru | Tattva Hathayoga
           </title>
