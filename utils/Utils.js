@@ -24,7 +24,7 @@ const generateEventCards = ( {events, error} ) => {
               />
           );
         })
-        : <Alert message={error} type="warning" />;
+        : "" ; //<Alert message={error} type="warning" />;
 
     return eventCards;
 }

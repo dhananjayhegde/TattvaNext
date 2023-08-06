@@ -137,7 +137,7 @@ export async function getUpcomingSessionsByProgram( programId ){
     let response = {}
 
     if(!resultData){
-        response.error = 'No sessions planned now'
+        response.error = 'No sessions planned now - 2'
     } else {    
         response.events = _mapSessionsToResponse( resultData )
     }
@@ -150,7 +150,7 @@ export async function getUpcomingSessionsByProgramSlug( programSlug ){
     let response = {}
 
     if(!resultData){
-        response.error = 'No sessions planned now'
+        response.error = 'No sessions planned now - 1'
     } else {    
         response.events = _mapSessionsToResponse( resultData )
     }
